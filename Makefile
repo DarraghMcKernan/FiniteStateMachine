@@ -10,31 +10,27 @@ MSG_CLEAN		:= "Cleaning up"
 
 ifeq ($(OS),Windows_NT)
     os  := Windows
-	# Make sure your Env Variable is set to SFML
-	# Tested with SFML 2.5.1 GCC 7.3.0 MinGW (SEH) - 64-bit
-	# Convert Windows directory path to UNIX Path
-	SDK			:=${MYSYS2}
-	SDK_PATH	:=$(subst \,/,$(subst C:\,/c/,$(SDK)))
-	INCLUDES	:= -I${SDK_PATH}/include -I.
-	LIBS		:= -L${SDK_PATH}/lib
-	CXXFLAGS 	:= -std=c++11 -Wall -Wextra -g ${INCLUDES}
+	INCLUDES	:= -I. -I./include
+	LIBS		:= -L.
+	CXXFLAGS 	:= -std=c++11 -Wall -Wextra -Werror -g ${INCLUDES}
 	LIBRARIES	:= -llibsfml-graphics -llibsfml-window -llibsfml-system
 	TARGET		:= ${BUILD_DIR}/sampleapp.exe
 else
     os := $(shell uname -s)
-	INCLUDES	:= -I.
+	INCLUDES	:= -I. -I./include
 	LIBS		:= -L.
-	CXXFLAGS 	:= -std=c++11 -Wall -Wextra -g ${INCLUDES}
+	CXXFLAGS 	:= -std=c++11 -Wall -Wextra -Werror -g ${INCLUDES}
 	LIBRARIES	:= -lsfml-graphics -lsfml-window -lsfml-system
 	TARGET		:= ${BUILD_DIR}/sampleapp.bin
 endif
 
-SRC				:= ${SRC_DIR}/main.cpp ${SRC_DIR}/Game.cpp ${SRC_DIR}/Player.cpp ${SRC_DIR}/NPC.cpp ${SRC_DIR}/GameObject.cpp ${INCLUDES}/cute_c2.h
+SRC				:=	$(wildcard ${SRC_DIR}/*.cpp) # List the CPP src files
 
 all				:= build
 
-build:
-	@echo 	${MSG_START} ${os}
+build: $(SRC)
+
+	@echo 		${MSG_START} ${os}
 
 	@echo 		"***	C++ Compiler	***"
 	@echo 		${CXX}
@@ -53,7 +49,7 @@ build:
 	#create bin directory
 	mkdir 		${BUILD_DIR}
 
-	${CXX} ${CXXFLAGS} -o ${TARGET} ${SRC} ${LIBS} ${LIBRARIES}
+	${CXX} ${CXXFLAGS} -o ${TARGET} $^ ${LIBS} ${LIBRARIES}
 	
 	@echo ${MSG_END}
 	
