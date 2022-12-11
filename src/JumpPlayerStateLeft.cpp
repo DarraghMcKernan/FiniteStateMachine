@@ -7,6 +7,8 @@
 #include <JumpThrowAttackPlayerState.h>
 #include <GlidePlayerState.h>
 
+#include <IdlePlayerState.h>
+
 PlayerState* JumpPlayerStateLeft::handleInput(gpp::Events& input)
 {
 	if (input.getCurrent() == gpp::Events::Event::DIED_EVENT) {
@@ -26,10 +28,12 @@ PlayerState* JumpPlayerStateLeft::handleInput(gpp::Events& input)
 	return nullptr;
 }
 void JumpPlayerStateLeft::update(Player& player) {
-	DEBUG_MSG("JumpPlayerState -> GlidePlayerState");
+	DEBUG_MSG("JumpPlayerStateLeft::update");
+	DEBUG_MSG(typeid(player).name());
+	//DEBUG_MSG("JumpPlayerState -> GlidePlayerState");
 	if (m_clock.getElapsedTime().asSeconds() > 1.2f) {
 		PlayerState* temp = player.getPlayerState();
-		PlayerState* state = new GlidePlayerState();
+		PlayerState* state = new IdlePlayerState();
 		player.getPlayerState()->exit(player);
 		player.setPlayerState(state);
 		player.getPlayerState()->enter(player);

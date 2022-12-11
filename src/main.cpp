@@ -143,7 +143,7 @@ int main()
 					(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) &&
 					 sf::Keyboard::isKeyPressed(sf::Keyboard::Space)))
 				{
-					DEBUG_MSG("gpp::Events::Event::JUMP_UP_EVENT_LEFT");
+					DEBUG_MSG("gpp::Events::Event::JUMP_UP_EVENT");
 					input.setCurrent(gpp::Events::Event::JUMP_UP_EVENT_LEFT);
 				}
 
