@@ -7,7 +7,10 @@
 #include <IdlePlayerState.h>
 #include <AccendLadderPlayerState.h>
 #include <DecendLadderPlayerState.h>
+
 #include <JumpPlayerState.h>
+#include <JumpPlayerStateLeft.h>
+
 #include <DiedPlayerState.h>
 
 #include <SlidePlayerStateLeft.h>
@@ -40,9 +43,9 @@ PlayerState* RunLeftPlayerState::handleInput(gpp::Events& input)
 		DEBUG_MSG("RunLeftPlayerState -> DecendLadderPlayerState");
 		return new DecendLadderPlayerState();
 	}
-	else if (input.getCurrent() == gpp::Events::Event::JUMP_UP_EVENT) {
+	else if (input.getCurrent() == gpp::Events::Event::JUMP_UP_EVENT_LEFT) {
 		DEBUG_MSG("IdlePlayerState -> JumpPlayerState");
-		return new JumpPlayerState();
+		return new JumpPlayerStateLeft();
 	}
 	else if (input.getCurrent() == gpp::Events::Event::SLIDE_EVENT_LEFT) {
 		DEBUG_MSG("RunLeftPlayerState -> SlidePlayerState");
