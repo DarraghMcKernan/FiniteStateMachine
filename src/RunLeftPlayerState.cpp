@@ -9,6 +9,8 @@
 #include <DecendLadderPlayerState.h>
 #include <JumpPlayerState.h>
 #include <DiedPlayerState.h>
+
+#include <SlidePlayerStateLeft.h>
 #include <SlidePlayerState.h>
 
 PlayerState* RunLeftPlayerState::handleInput(gpp::Events& input)
@@ -42,9 +44,9 @@ PlayerState* RunLeftPlayerState::handleInput(gpp::Events& input)
 		DEBUG_MSG("IdlePlayerState -> JumpPlayerState");
 		return new JumpPlayerState();
 	}
-	else if (input.getCurrent() == gpp::Events::Event::SLIDE_EVENT) {
+	else if (input.getCurrent() == gpp::Events::Event::SLIDE_EVENT_LEFT) {
 		DEBUG_MSG("RunLeftPlayerState -> SlidePlayerState");
-		return new SlidePlayerState();
+		return new SlidePlayerStateLeft();
 	}
 	else if (input.getCurrent() == gpp::Events::Event::DIED_EVENT) {
 		DEBUG_MSG("RunLeftPlayerState -> DiedPlayerState");
@@ -72,7 +74,7 @@ void RunLeftPlayerState::enter(Player& player)
 	player.getAnimatedSprite().addFrame(sf::IntRect(5712, 2640, 363, 458));//5712
 	player.getAnimatedSprite().addFrame(sf::IntRect(5349, 2640, 363, 458));
 	player.getAnimatedSprite().addFrame(sf::IntRect(4986, 2640, 363, 458));
-    
+
 	player.getAnimatedSprite().addFrame(sf::IntRect(5712, 3098, 363, 458));//
 
 	player.getAnimatedSpriteFrame().setTime(seconds(0.05f));

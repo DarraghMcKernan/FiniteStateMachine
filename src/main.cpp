@@ -151,6 +151,16 @@ int main()
 					DEBUG_MSG("gpp::Events::Event::SLIDE_EVENT");
 					input.setCurrent(gpp::Events::Event::SLIDE_EVENT);
 				}
+
+				// Running Slide Left
+				else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Down) &&
+						  sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) ||
+						 (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) &&
+						  sf::Keyboard::isKeyPressed(sf::Keyboard::Down)))
+				{
+					DEBUG_MSG("gpp::Events::Event::SLIDE_EVENT_LEFT");
+					input.setCurrent(gpp::Events::Event::SLIDE_EVENT_LEFT);
+				}
 				// Hit Ground Event
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
 				{
@@ -213,7 +223,7 @@ int main()
 					DEBUG_MSG("gpp::Events::Event::RUN_LEFT_STOP_EVENT");
 					input.setCurrent(gpp::Events::Event::RUN_LEFT_STOP_EVENT);
 				}
-				
+
 				// Stop Slide
 				else if (event.key.code == sf::Keyboard::Down &&
 				sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -221,6 +231,15 @@ int main()
 					DEBUG_MSG("gpp::Events::Event::RUN_RIGHT_START_EVENT");
 					input.setCurrent(gpp::Events::Event::RUN_RIGHT_START_EVENT);
 				}
+
+				// Stop Slide Left
+				else if (event.key.code == sf::Keyboard::Down &&
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+				{
+					DEBUG_MSG("gpp::Events::Event::RUN_RIGHT_LEFT_EVENT");
+					input.setCurrent(gpp::Events::Event::RUN_LEFT_START_EVENT);
+				}
+
 				// Stop Moving Up
 				else if (event.key.code == sf::Keyboard::Up)
 				{
