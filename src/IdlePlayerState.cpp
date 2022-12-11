@@ -5,6 +5,7 @@
 #include <AttackPlayerState.h>
 #include <ThrowAttackPlayerState.h>
 #include <RunRightPlayerState.h>
+#include <RunLeftPlayerState.h>
 #include <AccendLadderPlayerState.h>
 #include <DecendLadderPlayerState.h>
 #include <JumpPlayerState.h>
@@ -26,6 +27,10 @@ PlayerState* IdlePlayerState::handleInput(gpp::Events& input) {
 	else if (input.getCurrent() == gpp::Events::Event::RUN_RIGHT_START_EVENT) {
 		DEBUG_MSG("IdlePlayerState -> RunRightPlayerState");
 		return new RunRightPlayerState();
+	}
+	else if (input.getCurrent() == gpp::Events::Event::RUN_LEFT_START_EVENT) {
+		DEBUG_MSG("IdlePlayerState -> RunLeftPlayerState");
+		return new RunLeftPlayerState();
 	}
 	else if (input.getCurrent() == gpp::Events::Event::HIT_LADDER_BOTTOM_EVENT) {
 		DEBUG_MSG("IdlePlayerState -> AccendLadderPlayerState");

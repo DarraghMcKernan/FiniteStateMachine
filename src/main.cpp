@@ -96,6 +96,13 @@ int main()
 					DEBUG_MSG("gpp::Events::Event::RUN_RIGHT_START_EVENT");
 					input.setCurrent(gpp::Events::Event::RUN_RIGHT_START_EVENT);
 				}
+
+				// run left
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+				{
+					DEBUG_MSG("gpp::Events::Event::RUN_LEFT_START_EVENT");
+					input.setCurrent(gpp::Events::Event::RUN_LEFT_START_EVENT);
+				}
 				// Climb Up
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 				{
@@ -200,9 +207,16 @@ int main()
 					DEBUG_MSG("gpp::Events::Event::RUN_RIGHT_STOP_EVENT");
 					input.setCurrent(gpp::Events::Event::RUN_RIGHT_STOP_EVENT);
 				}
+
+				else if (event.key.code == sf::Keyboard::Left)
+				{
+					DEBUG_MSG("gpp::Events::Event::RUN_LEFT_STOP_EVENT");
+					input.setCurrent(gpp::Events::Event::RUN_LEFT_STOP_EVENT);
+				}
+				
 				// Stop Slide
 				else if (event.key.code == sf::Keyboard::Down &&
-						 sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 				{
 					DEBUG_MSG("gpp::Events::Event::RUN_RIGHT_START_EVENT");
 					input.setCurrent(gpp::Events::Event::RUN_RIGHT_START_EVENT);
@@ -231,7 +245,7 @@ int main()
 		}
 
 		// Update AI
-		ai.setCurrent(gpp::Events::Event::RUN_RIGHT_START_EVENT);
+		//ai.setCurrent(gpp::Events::Event::RUN_RIGHT_START_EVENT);
 		npc.handleInput(ai);
 
 		// Update the Player
